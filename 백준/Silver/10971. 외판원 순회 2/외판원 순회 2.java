@@ -22,9 +22,9 @@ public class Main {
 		for(int i=0; i<N; i++) { // 다음 목적지 설정
 			if(vis[i]) continue; // 방문한 곳은 지나쳐
 			if(board[now][i] == 0) continue; // 현재 노드에서 다음노드로 가는 길 없을 때
-			vis[i] = true; // 방문처리
 			long t = tmp + board[now][i]; // 현재 노드에서 다음노드 가는 비용 추가
-//			if(t > res) continue; // 이미 최소비용보다 많으면 안가도 됨
+			if(t > res) continue; // 이미 최소비용보다 많으면 안가도 됨
+			vis[i] = true; // 방문처리
 			dfs(k+1, t, i, start); // 다음 노드로 넘어감
 			vis[i] = false;
 		}
