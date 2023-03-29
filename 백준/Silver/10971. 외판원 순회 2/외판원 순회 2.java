@@ -16,12 +16,6 @@ public class Main {
 		if(k==N) {
 			if(board[now][start] == 0) return;
 			res = Math.min(res, tmp + board[now][start]);
-			src[k] = start;
-			long a = 0;
-			for(int i=0; i<N; i++) {
-				a += board[src[i]][src[i+1]];
-			}
-//			System.out.println(Arrays.toString(src)+" "+res+" "+(tmp + board[now][start])+" "+a);
 			return;
 		}
 		
@@ -31,7 +25,6 @@ public class Main {
 			vis[i] = true; // 방문처리
 			long t = tmp + board[now][i]; // 현재 노드에서 다음노드 가는 비용 추가
 //			if(t > res) continue; // 이미 최소비용보다 많으면 안가도 됨
-			src[k] = i;
 			dfs(k+1, t, i, start); // 다음 노드로 넘어감
 			vis[i] = false;
 		}
@@ -51,9 +44,7 @@ public class Main {
 		}
 		vis = new boolean[N];
 		res = Long.MAX_VALUE;
-		src = new int[N+1];
 		for(int st = 0; st<N; st++) {
-			src[0] = st;
 			vis[st] = true;
 			dfs(1, 0, st, st);
 			// 시작점은 정해졌음.
