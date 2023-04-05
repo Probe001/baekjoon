@@ -24,31 +24,13 @@
 1. 첫째 줄 : 뽑힌 정수들의 개수
 2. 뽑힌 정수들을 한 줄에 하나씩 작은 순서대로 출력
 
-## 문제 풀이
+## 문제 풀이 - DFS
 
-1. 부분집합? => 2^N인데 N == 100이므로 시간초과
+1. vis 배열을 둔 뒤, dfs를 돌린다.
 
-2. 존재여부 int 배열 parents 생성
+2. 1번부터 차례대로 들어가본다.
 
-3. 두번째 줄의 값 board[i]에 따라 parents[i]++
-ind	1 2 3 4 5 6 7
-board	3 1 1 5 5 4 6
-parents	2 0 1 1 2 1 0
-
-4. parents를 순회하면서 값이 parents[i]의 값이 0인 경우
-parents[board[i]]--
-ind	1 2 3 4 5 6 7
-board	3 1 1 5 5 4 6
-parents	1 0 1 1 2 0 0
-
-5. 만약 parents[board[i]]-- 가 0이 된 경우 해당 값도 parents를 줄여준다.
-ind	1 2 3 4 5 6 7
-board	3 1 1 5 5 4 6
-parents	1 0 1 0 1 0 0
-
-5. 1번부터 순회하면서 parents[i]가 양수인 것들만 뽑는다.
-
-
+3. 사이클이 돌아가는 경우 모두 가용하므로 사이클이 도는 모든 수를 리스트에 저장한다.
  */
 
 import java.io.BufferedReader;
