@@ -1,0 +1,18 @@
+-- 요약
+# PRODUCT : 판매중인 상품 정보
+-- PRODUCT_ID : PK
+-- PRODUCT_CODE : 상품코드
+-- PRICE : 가격
+# OFFLINE_SALE : 오프라인 상품
+-- OFFLINE_SALE_ID : PK
+-- PRODUCT_ID : FK
+-- SALES_AMOUNT : 판매량
+-- SALES_DATE : 판매일
+# 요구사항
+-- 상품 코드 별 매출액(판매량 * 판매가) 합계를 출력
+-- 매출액 기준 내림차순 정렬, 상품코드 기준 오름차순 정렬
+SELECT P.PRODUCT_CODE, SUM(P.PRICE * O.SALES_AMOUNT) AS SALE
+FROM PRODUCT AS P JOIN OFFLINE_SALE AS O
+USING (PRODUCT_ID)
+GROUP BY P.PRODUCT_CODE
+ORDER BY SALE DESC, P.PRODUCT_CODE ASC;
